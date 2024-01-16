@@ -25,11 +25,11 @@ function ShowItems({title, items,type}) {
 
   return (
    <div className="w-100">
-    <h4 className="text-center border-bottom">{title}</h4>
+    <h4 className="mx-5">{title}</h4>
     <div className="row gap-2 p-4 flex-wrap" >
         {
             items.map((item,index) =>{
-                return( <p key = {index*55} className='col-md-2 border d-flex flex-column py-3 text-center' onDoubleClick={()=> handleDoubleClick(item.docId)}>
+                return( <p key = {index*55} className='col-md-2  d-flex flex-column py-3 text-center' onDoubleClick={()=> handleDoubleClick(item.docId)}>
                    {type === "folder" ? (<FontAwesomeIcon icon ={faFolder} size = "4x"/>) : (<FontAwesomeIcon icon ={faFileAlt} size = "4x"/>)} 
                     {item.data.name}</p>)
             })

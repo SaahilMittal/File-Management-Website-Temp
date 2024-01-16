@@ -12,7 +12,7 @@ function Navbar() {
 
 
   return (
-    <nav className="navbar bg-white navbar-light navbar-expand-lg shadow-sm">
+    <nav className="navbar bg-info navbar-light navbar-expand-lg shadow-sm">
         <Link to="/" className="navbar-brand ms-5"> File Management System</Link>
         <ul className="navbar-nav ms-auto me-5">
           {

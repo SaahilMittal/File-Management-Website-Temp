@@ -59,22 +59,38 @@ const FileComponent = () => {
               </div>
             </div>
             <div className="w-100 mt-4" style={{ height: "650px" }}>
-              {currentFile?.data?.extension.includes("png") ||
+              {
+                
+              currentFile?.data?.extension.includes("png") ||
               currentFile?.data?.extension.includes("jpg") ||
               currentFile?.data?.extension.includes("jpeg") ||
               currentFile?.data?.extension.includes("gif") ? (
-                <img
+                <div className="text-center">
+                  <img
                   src={currentFile?.data?.url}
                   alt={currentFile?.data?.name}
-                  className="w-50 h-100 img-fluid"
+                  className="img-fluid"
                 />
+                </div>
+                
               ) : (
-                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                <div className="w-150 h-100 mt-4" style={{ height: "1000px" }}>
+                 { currentFile?.data?.extension.includes("pdf") ? (
+                    <iframe
+                    src={currentFile?.data?.url}
+                    title={currentFile?.data?.name}
+                    className="w-100 h-100"
+                    />
+                  ): (  
+                 <div className="w-100 h-100 d-flex justify-content-center align-items-center">
                   <p className="text-center">
                     File type not supported. 
                   </p>
                 </div>
-              )}
+                )}
+                </div>
+              )
+              }
             </div>
           </div>
         )}

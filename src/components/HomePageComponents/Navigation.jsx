@@ -12,7 +12,7 @@ function NavComponent() {
 
 
   return (
-    <nav className="navbar bg-dark navbar-dark navbar-expand-lg">
+    <nav className="navbar bg-danger navbar-dark navbar-expand-lg">
         <Link to="/" className="navbar-brand ms-5"> File Management System</Link>
         <ul className="navbar-nav ms-auto me-5">
           {

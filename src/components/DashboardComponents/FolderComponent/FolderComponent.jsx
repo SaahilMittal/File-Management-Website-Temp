@@ -30,7 +30,7 @@ function FolderComponent() {
             <>
               {childFolders.length > 0 && (
                 <ShowItems
-                  title={"Created Folders"}
+                  title={"Folders"}
                   type={"folder"}
                   items={childFolders}
                 />
@@ -38,7 +38,7 @@ function FolderComponent() {
     
               {uploadedFiles && uploadedFiles.length > 0 && (
                 <ShowItems
-                  title={"Uploaded Files"}
+                  title={"Files"}
                   type={"file"}
                   items={uploadedFiles}
                 />

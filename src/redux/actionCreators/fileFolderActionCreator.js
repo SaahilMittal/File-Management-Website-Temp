@@ -118,7 +118,7 @@ export const uploadFile = (file,data, setSuccess) => (dispatch) => {
             const fileData = await (await file.get()).data();
             const fileId = file.id;
             dispatch(addFile({ data: fileData, docId: fileId }));
-            toast.success("File uploaded successfully!");
+            alert("File uploaded successfully!");
             setSuccess(true);
           })
           .catch(() => {
