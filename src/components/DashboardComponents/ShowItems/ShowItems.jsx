@@ -17,7 +17,9 @@ function ShowItems({title, items,type}) {
             {
                 dispatch(changeFolder(itemId))
                 navigate(`/dashboard/folder/${itemId}`)
-            }
+            }else {
+                navigate(`/dashboard/file/${itemId}`);
+              }
     }
 
 

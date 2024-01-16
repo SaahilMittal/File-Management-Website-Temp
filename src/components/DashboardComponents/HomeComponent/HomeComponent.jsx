@@ -6,12 +6,18 @@ function HomeComponent() {
 
     //const files = [{data :{name : "file1"} }, {data :{ name : "file2"}}]
 
+    
     const {isLoading, userFolders, userFiles} = useSelector(
       (state) => ({
         isLoading: state.fileFolderReducer.isLoading,
-        userFolders: state.fileFolderReducer.userFolders.filter(folder=>folder.data.parent === "root"),
-        userFiles: state.fileFolderReducer.userFiles.filter((file) => file.data.parent ==="root")
-      }), shallowEqual
+        userFolders: state.fileFolderReducer.userFolders.filter(
+          (folder) => folder.data.parent === "root"
+        ),
+        userFiles: state.fileFolderReducer.userFiles.filter(
+          (file) => file.data.parent === "root"
+        ),
+      }),
+      shallowEqual
     )
  
 
@@ -28,7 +34,7 @@ function HomeComponent() {
 
     <>
     <ShowItems title = {"Folders"} type = {"folder"} items ={userFolders} />
-    <ShowItems title = {"Files"} type = {"file"}items ={userFiles.filter((file) =>file.data.url === "")} />
+    <ShowItems title = {"Files"} type = {"file"} items ={userFiles.filter((file) =>file.data.data === null)} />
     </>
 
       )
