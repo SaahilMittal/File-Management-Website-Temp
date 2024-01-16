@@ -8,12 +8,12 @@ function Navbar() {
 
   const {isAuthenticated , user} = useSelector(state => state.authReducer);
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
 
 
   return (
     <nav className="navbar bg-white navbar-light navbar-expand-lg shadow-sm">
-        <Link to="/dashboard" className="navbar-brand ms-5"> File Management System</Link>
+        <Link to="/" className="navbar-brand ms-5"> File Management System</Link>
         <ul className="navbar-nav ms-auto me-5">
           {
             isAuthenticated ?  (
@@ -30,7 +30,7 @@ function Navbar() {
                 <Link to="/dashboard" className="btn btn-success btn-sm">Dashboard</Link>
             </li>
             <li className="nav-item">
-                <button className="btn btn-primary btn-sm" onClick={() => dispatch(signOutUser())}>Logout</button>
+                <button className="btn btn-primary btn-sm" onClick={() => {navigate("/") , dispatch(signOutUser())}}>Logout</button>
             </li>
               </>
             )

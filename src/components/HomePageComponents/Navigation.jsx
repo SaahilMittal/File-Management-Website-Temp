@@ -8,7 +8,7 @@ function NavComponent() {
 
   const {isAuthenticated , user} = useSelector(state => state.authReducer);
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
 
 
   return (
@@ -30,7 +30,7 @@ function NavComponent() {
                 <Link to="/dashboard" className="btn btn-success btn-sm">Dashboard</Link>
             </li>
             <li className="nav-item">
-                <button className="btn btn-primary btn-sm" onClick={() => dispatch(signOutUser())}>Logout</button>
+                <button className="btn btn-primary btn-sm" onClick={() =>  {navigate("/") , dispatch(signOutUser())} }>Logout</button>
             </li>
               </>
             )
