@@ -17,6 +17,10 @@ const setLoading = (payload) => ({
     payload,
 })
 
+const addFiles = (payload) => ({
+    type: types.ADD_FILES,
+    payload,
+})
 
 const setChangeFolder = (payload) => ({
     type : types.CHANGE_FOLDER,
@@ -66,4 +70,20 @@ export const deleteFolder = (folderId) => (dispatch) => {
     .catch((error) => {
         console.log("Error deleting folder", error);
     });
+}
+
+export const getFiles = (userId) => (dispatch) => {
+    fire
+    .firestore()
+    .collection("files") 
+    .where("userId", '==' , userId)
+    .get()
+    .then(async (files) => {
+            const filesData = await files.docs.map((file) => ({
+                data : file.data(),
+                docId: file.id
+            }));
+            dispatch(addFiles(filesData))
+           // dispatch(setLoading(false))
+        })
 }

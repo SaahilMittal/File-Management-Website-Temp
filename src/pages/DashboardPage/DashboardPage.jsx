@@ -6,12 +6,14 @@ import Navbar from '../../components/DashboardComponents/Navbar/Navbar'
 import SubBar from '../../components/DashboardComponents/SubBar/SubBar'
 import HomeComponent from '../../components/DashboardComponents/HomeComponent/HomeComponent'
 import CreateFolder from '../../components/DashboardComponents/CreateFolder/CreateFolder'
-import { getFolders } from '../../redux/actionCreators/fileFolderActionCreator'
+import { getFiles, getFolders } from '../../redux/actionCreators/fileFolderActionCreator'
 import FolderComponent from '../../components/DashboardComponents/FolderComponent/FolderComponent'
+import UploadFile from '../../components/DashboardComponents/UploadFile/UploadFile'
 
 function DashboardPage() {
 
   const [isCreateFolderModalOpen , setisCreateFolderModalOpen] = useState(false)
+  const [isFileUploadModalOpen, setIsFileUploadModalOpen] = useState(false)
 
   //const IsLoggedIn = useSelector(state => state.authReducer.isAuthenticated)
   const {IsLoggedIn, isLoading, userId} = useSelector((state) => ({
@@ -30,6 +32,8 @@ function DashboardPage() {
   useEffect(() => {
     if(isLoading && userId ){
       dispatch(getFolders(userId))
+      dispatch(getFiles(userId))
+
     }
   },[isLoading, userId, dispatch])
 
@@ -41,8 +45,13 @@ function DashboardPage() {
         <CreateFolder setisCreateFolderModalOpen = {setisCreateFolderModalOpen} />
       )
     }
+     {
+      isFileUploadModalOpen && (
+        <UploadFile setIsFileUploadModalOpen = {setIsFileUploadModalOpen} />
+      )
+    }
     <Navbar/>
-    <SubBar setisCreateFolderModalOpen={setisCreateFolderModalOpen}/>
+    <SubBar setisCreateFolderModalOpen={setisCreateFolderModalOpen} setIsFileUploadModalOpen={setIsFileUploadModalOpen}/>
 
     <Routes>
       <Route path="/" element={<HomeComponent />} />
