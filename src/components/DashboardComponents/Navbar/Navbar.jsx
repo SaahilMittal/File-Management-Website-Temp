@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import {signOutUser} from "../../../redux/actionCreators/authActionCreator"
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { changeFolder, userLogsOut } from '../../../redux/actionCreators/fileFolderActionCreator';
 function Navbar() {
 
   const {isAuthenticated , user} = useSelector(state => state.authReducer);
@@ -13,24 +14,24 @@ function Navbar() {
 
   return (
     <nav className="navbar bg-info navbar-light navbar-expand-lg shadow-sm">
-        <Link to="/" className="navbar-brand ms-5"> File Management System</Link>
+        <Link to="/" className="navbar-brand ms-5  "> File Management System</Link>
         <ul className="navbar-nav ms-auto me-5">
           {
             isAuthenticated ?  (
               <>
 
-            <li className="nav-item mx-2">
-                <p className='my-0 mt-1 mx-2'>
-                  <span className="text-dark">Welcome, </span>
+            <li className="nav-item mx-2 text-center">
+                <p className='my-0 mt-1 mx-2 text-center'>
+                  <span className="text-dark"> USER : </span>
                   <span className="fw-bold">{user.displayName}</span>
                 </p>
             </li>
 
             <li className="nav-item mx-2">
-                <Link to="/dashboard" className="btn btn-success btn-sm">Dashboard</Link>
+                <button className="btn btn-dark btn-md shadow-sm rounded" onClick={()=> {navigate("/dashboard"), dispatch(changeFolder("root"))}}>Dashboard</button>
             </li>
-            <li className="nav-item">
-                <button className="btn btn-primary btn-sm" onClick={() => {navigate("/") , dispatch(signOutUser())}}>Logout</button>
+            <li className="nav-item ">
+                <button className="btn btn-danger btn-md" onClick={() => {navigate("/") , dispatch(signOutUser()), dispatch(userLogsOut(""))}}>Logout</button>
             </li>
               </>
             )

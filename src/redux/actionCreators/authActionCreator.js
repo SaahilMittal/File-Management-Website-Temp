@@ -1,5 +1,6 @@
 import * as types from "../actionsTypes/authActionTypes"
 import fire from "../../api/firebase"
+import { userLogsOut } from "./fileFolderActionCreator"
 
 const loginUser = (payload) => {
     return {
@@ -48,11 +49,11 @@ export const signUpUser = (name,email,password, setSuccess) => (dispatch) => {
             setSuccess(true);
         })
         .catch((error) =>{
-            console.log(error)
+            alert(error)
         })
     })
     .catch((error) => {
-        console.log(error)
+        alert(error)
     })
     
     ;
@@ -61,6 +62,7 @@ export const signUpUser = (name,email,password, setSuccess) => (dispatch) => {
 export const signOutUser = () => (dispatch) => {
     fire.auth().signOut().then(()=> {
         dispatch(logoutUser())
+        userLogsOut("lol");
 
     });
 }
@@ -70,8 +72,6 @@ export const checkIsLoggedIn = () => (dispatch) => {
         if(user){
             dispatch(loginUser({uid: user.uid, email : user.email , displayName : user.displayName}))
         }
-        else{
-            dispatch(logoutUser())
-        }
+       
     })
 }

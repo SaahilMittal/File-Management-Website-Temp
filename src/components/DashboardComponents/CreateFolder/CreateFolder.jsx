@@ -48,6 +48,7 @@ function CreateFolder({setisCreateFolderModalOpen}) {
                 };
                 
                 dispatch(createFolder(data));
+                setisCreateFolderModalOpen(false)
             }
             else alert("Folder Already Present")
         }
@@ -72,7 +73,7 @@ function CreateFolder({setisCreateFolderModalOpen}) {
                     <div className="form-group">
                         <input type="text" className="form-control" id='folderName' placeholder='Folder Name' value={fileName} onChange={(e)=> setFileName(e.target.value)}/>
                     </div>
-                    <button className="btn btn-primary mt-5 form-control">
+                    <button className="btn btn-primary mt-5 form-control"  >
                         Create Folder
                     </button>
                 </form>

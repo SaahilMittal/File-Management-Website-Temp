@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import {signOutUser} from "../../redux/actionCreators/authActionCreator"
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { changeFolder } from '../../redux/actionCreators/fileFolderActionCreator';
 function NavComponent() {
 
   const {isAuthenticated , user} = useSelector(state => state.authReducer);
@@ -12,7 +13,7 @@ function NavComponent() {
 
 
   return (
-    <nav className="navbar bg-danger navbar-dark navbar-expand-lg">
+    <nav className="navbar bg-info navbar-dark navbar-expand-lg">
         <Link to="/" className="navbar-brand ms-5"> File Management System</Link>
         <ul className="navbar-nav ms-auto me-5">
           {
@@ -21,16 +22,16 @@ function NavComponent() {
 
             <li className="nav-item mx-2">
                 <p className='my-0 mt-1 mx-2'>
-                  <span className="text-light">Welcome, </span>
-                  <span className="text-warning">{user.displayName}</span>
+                  <span className="text-light"> USER : </span>
+                  <span className="text-justigy">{user.displayName}</span>
                 </p>
             </li>
 
             <li className="nav-item mx-2">
-                <Link to="/dashboard" className="btn btn-success btn-sm">Dashboard</Link>
+                <button className="btn btn-dark btn-md" onClick={()=> {dispatch(changeFolder("root")),navigate("/dashboard")}}>Dashboard</button>
             </li>
             <li className="nav-item">
-                <button className="btn btn-primary btn-sm" onClick={() =>  {navigate("/") , dispatch(signOutUser())} }>Logout</button>
+                <button className="btn btn-danger btn-md" onClick={() =>  {navigate("/") , dispatch(signOutUser()) , dispatch(userLogsOut(""))} }>Logout</button>
             </li>
               </>
             )
@@ -42,10 +43,10 @@ function NavComponent() {
               <>
 
             <li className="nav-item mx-2">
-                <Link to="/login" className="btn btn-success btn-sm">Login</Link>
+                <Link to="/login" className="btn btn-success btn-md">Login</Link>
             </li>
             <li className="nav-item">
-                <Link to="/register" className="btn btn-primary btn-sm">Register</Link>
+                <Link to="/register" className="btn btn-primary btn-md">Register</Link>
             </li>
               </>
             )

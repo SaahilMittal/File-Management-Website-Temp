@@ -12,6 +12,19 @@ const addFolders = (payload) => ({
 });
 
 
+const setDeleteFolder = (payload) => ({
+    type: types.DELETE_FOLDER,
+    payload,
+})
+
+const userLogOut = () => ({
+    type:types.LOGOUT_USER,
+})
+
+const setDeleteFile = (payload) => ({
+    type: types.DELETE_FILE,
+    payload,
+})
 const setLoading = (payload) => ({
     type: types.SET_LOADING,
     payload,
@@ -40,6 +53,10 @@ export const createFolder = (data) => (dispatch) => {
     })
 };
 
+export const userLogsOut = (data) => (dispatch) => {
+    dispatch(userLogOut())
+
+}
 export const getFolders = (userId) => (dispatch) => {
     dispatch(setLoading(true))
     fire
@@ -69,10 +86,26 @@ export const deleteFolder = (folderId) => (dispatch) => {
     .doc(folderId)
     .delete()
     .then(() => {
+        dispatch(setDeleteFolder(folderId))
         console.log("folder deleted successfully");
     })
     .catch((error) => {
         console.log("Error deleting folder", error);
+    });
+}
+
+export const deleteFile = (fileId) => (dispatch) => {
+    fire
+    .firestore()
+    .collection("files")
+    .doc(fileId)
+    .delete()
+    .then(() => {
+        dispatch(setDeleteFile(fileId))
+        console.log("file deleted successfully");
+    })
+    .catch((error) => {
+        console.log("Error deleting file", error);
     });
 }
 

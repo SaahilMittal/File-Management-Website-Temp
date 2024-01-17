@@ -17,7 +17,7 @@ function RegForm() {
 
   React.useEffect(() =>{
     if(success){
-      navigate("/dashboard")
+      navigate("/")
     }
   }, [success])
 
