@@ -38,6 +38,55 @@ const addFile = (payload) => ({
     type: types.CREATE_FILE,
     payload,
   });
+const setRenameFolder = (payload) => ({
+    type: types.RENAME_FOLDER,
+    payload,
+})  
+const setRenameFile = (payload) => ({
+    type: types.RENAME_FILE,
+    payload,
+})
+
+export const renameFile = (fileId, newName) => (dispatch) => {
+   
+    fire
+        .firestore()
+        .collection("files")
+        .doc(fileId)
+        .update({
+            name: newName,
+        })
+        .then(() => {
+            dispatch(setRenameFile({ docId: fileId, name: newName }));
+           
+        })
+        .catch((error) => {
+            console.log("Error renaming file", error);
+        });
+};
+
+export const renameFolder = (folderId, newName) => (dispatch) => {
+
+
+        
+        fire.
+        firestore()
+        .collection("folders")
+        .doc(folderId)
+        .update({
+            name : newName,
+        })
+        .then(() => {
+            dispatch(setRenameFolder({ docId: folderId, name: newName }));
+        })
+        .catch((error) => {
+            console.log("Error renaming folder", error);
+        });
+
+
+}
+
+
 
 const setChangeFolder = (payload) => ({
     type : types.CHANGE_FOLDER,

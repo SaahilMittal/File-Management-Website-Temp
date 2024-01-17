@@ -7,3 +7,5 @@ export const CREATE_FILE = "CREATE_FILE";
 export const DELETE_FILE = "DELETE_FILE";
 export const DELETE_FOLDER = "DELETE_FOLDER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const RENAME_FOLDER = "RENAME_FOLDER";
+export const RENAME_FILE = "RENAME_FILE";

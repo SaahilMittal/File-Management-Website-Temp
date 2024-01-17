@@ -61,7 +61,46 @@ const fileFolderReducer = (state = initialState, action) => {
                 userFolders: [],
                 userFiles : []
             }       
-
+        case types.RENAME_FOLDER:
+            return {
+                ...state,
+                userFolders: state.userFolders.map((folder) => {
+                    if(folder.docId === action.payload.docId)
+                    {
+                        return {
+                            ...folder,
+                            data : {
+                                ...folder.data,
+                                name : action.payload.name,
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return folder;
+                    }
+                })
+            }
+        case types.RENAME_FILE:
+            return {
+                ...state,
+                userFiles: state.userFiles.map((file) => {
+                    if(file.docId === action.payload.docId)
+                    {
+                        return {
+                            ...file,
+                            data : {
+                                ...file.data,
+                                name : action.payload.name,
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return file;
+                    }
+                })
+            }    
                             
         default:
             return state;
